@@ -165,7 +165,9 @@ void cmExportInstallCMakeConfigGenerator::GenerateImportPrefix(
     std::string absDestS = absDest + '/';
     os << "# Compute the installation prefix relative to this file.\n"
           "get_filename_component(_IMPORT_PREFIX"
-          " \"${CMAKE_CURRENT_LIST_FILE}\" PATH)\n";
+          " \"${CMAKE_CURRENT_LIST_FILE}\" REALPATH)\n"
+          "get_filename_component(_IMPORT_PREFIX"
+          " \"${_IMPORT_PREFIX}\" PATH)\n";
     if (cmHasLiteralPrefix(absDestS, "/lib/") ||
         cmHasLiteralPrefix(absDestS, "/lib64/") ||
         cmHasLiteralPrefix(absDestS, "/libx32/") ||
